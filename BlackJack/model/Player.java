@@ -29,6 +29,8 @@ public class Player {
   {
     m_hand.clear();
   }
+
+  public int GetMaxScore() { return g_maxScore; };
   
   public void ShowHand()
   {

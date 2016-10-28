@@ -16,8 +16,8 @@ public class PlayGame {
         a_view.DisplayGameOver(a_game.IsDealerWinner());
     }
 
-    int input = a_view.GetInput();
-    
+    int input = this.GetInput();
+
     if (input == 'p')
     {
         a_game.NewGame();
@@ -33,4 +33,19 @@ public class PlayGame {
 
     return input != 'q';
   }
+
+  private int GetInput()
+  {
+    try {
+      int c = System.in.read();
+      while (c == '\r' || c =='\n') {
+          c = System.in.read();
+      }
+      return c;
+    } catch (java.io.IOException e) {
+      System.out.println("" + e);
+      return 0;
+    }
+  }
 }
+

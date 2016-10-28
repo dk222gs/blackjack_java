@@ -12,20 +12,6 @@ public class SwedishView implements IView
             System.out.println("Skriv 'p' för att Spela, 'h' för nytt kort, 's' för att stanna 'q' för att avsluta\n");
         }
         
-        public int GetInput()
-        {
-          try {
-            int c = System.in.read();
-            while (c == '\r' || c =='\n') {
-              c = System.in.read();
-            }
-            return c;
-          } catch (java.io.IOException e) {
-            System.out.println("" + e);
-            return 0;
-          }
-        }
-        
         public void DisplayCard(BlackJack.model.Card a_card)
         {
             if (a_card.GetColor() == BlackJack.model.Card.Color.Hidden)
