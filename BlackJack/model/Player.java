@@ -22,9 +22,9 @@ public class Player {
   
   public Iterable<Card> GetHand()
   {
-    return m_hand;
+      return m_hand;
   }
-  
+
   public void ClearHand()
   {
     m_hand.clear();
@@ -32,10 +32,11 @@ public class Player {
   
   public void ShowHand()
   {
-    for(Card c : m_hand)
+    for(Card c : GetHand())
     {
       c.Show(true);
     }
+
   }
   
   public int CalcScore()
