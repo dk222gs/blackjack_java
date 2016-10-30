@@ -11,7 +11,7 @@ class DealerAdvantageGameRulesStrategy implements IGameRulesStrategy {
       return false;
     } else if(a_player.CalcScore() < a_dealer.CalcScore() && a_dealer.CalcScore() <= a_dealer.GetMaxScore()) {
       return true;
-    } else if (a_player.CalcScore() > a_dealer.CalcScore() && a_player.CalcScore() < a_dealer.GetMaxScore()) {
+    } else if (a_player.CalcScore() > a_dealer.CalcScore() && a_player.CalcScore() <= a_dealer.GetMaxScore()) {
       return false;
     }
     return true;

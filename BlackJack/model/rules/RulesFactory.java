@@ -11,6 +11,6 @@ public class RulesFactory {
   }
 
   public IGameRulesStrategy GetGameRules() {
-    return new DealerAdvantageGameRulesStrategy();
+    return new PlayerAdvantageGameRulesStrategy();
   }
 }

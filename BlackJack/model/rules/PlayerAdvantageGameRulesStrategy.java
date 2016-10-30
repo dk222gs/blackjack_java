@@ -1,27 +1,19 @@
 package BlackJack.model.rules;
 
-import BlackJack.model.Card;
 import BlackJack.model.Dealer;
-import BlackJack.model.Deck;
 import BlackJack.model.Player;
 
-class PlayerAdvantageGameRulesStrategy implements INewGameStrategy {
-
-  public boolean NewGame(Deck a_deck, Dealer a_dealer, Player a_player) {
-    Card c;
-  
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_player.DealCard(c);
-  
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_dealer.DealCard(c);
-  
-    c = a_deck.GetCard();
-    c.Show(true);
-    a_player.DealCard(c);
-  
-    return true;
+class PlayerAdvantageGameRulesStrategy implements IGameRulesStrategy {
+  public boolean isDealerWinner(Dealer a_dealer, Player a_player) {
+    if (a_player.CalcScore() > a_dealer.GetMaxScore()) {
+      return true;
+    } else if(a_dealer.CalcScore() > a_dealer.GetMaxScore()) {
+      return false;
+    } else if(a_player.CalcScore() < a_dealer.CalcScore() && a_dealer.CalcScore() <= a_dealer.GetMaxScore()) {
+      return true;
+    } else if (a_player.CalcScore() > a_dealer.CalcScore() && a_player.CalcScore() <= a_dealer.GetMaxScore()) {
+      return false;
+    }
+    return false;
   }
 }
