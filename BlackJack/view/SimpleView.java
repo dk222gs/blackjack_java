@@ -1,6 +1,12 @@
 package BlackJack.view;
 
-public class SimpleView implements IView 
+import BlackJack.model.Card;
+
+import java.util.Observable;
+import java.util.Observer;
+import java.util.concurrent.TimeUnit;
+
+public class SimpleView implements IView, Observer
 {
 
   public void DisplayWelcomeMessage()
@@ -63,4 +69,21 @@ public class SimpleView implements IView
             }
             
         }
+
+  @Override
+  public void update(Observable o, Object arg) {
+    StringBuilder builder = new StringBuilder();
+    builder.append("New card in hand ||");
+    for(Card c : (Iterable<Card>)arg) {
+      builder.append(" " + c.GetValue() + "of" + c.GetColor());
     }
+    builder.append(" ||");
+    System.out.println(builder.toString());
+
+    try {
+      TimeUnit.SECONDS.sleep(4);
+    } catch (InterruptedException e) {
+      System.out.println("Error when sleeping: " + e.getMessage());
+    }
+  }
+}

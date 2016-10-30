@@ -1,6 +1,8 @@
 package BlackJack.model;
 
-public class Game {
+import java.util.Observable;
+
+public class Game extends Observable {
 
   private Dealer m_dealer;
   private Player m_player;
@@ -10,7 +12,6 @@ public class Game {
     m_dealer = new Dealer(new BlackJack.model.rules.RulesFactory());
     m_player = new Player();
   }
-    
     
   public boolean IsGameOver()
   {
@@ -29,7 +30,10 @@ public class Game {
   
   public boolean Hit()
   {
-    return m_dealer.Hit(m_player);
+    boolean hit = m_dealer.Hit(m_player);
+    setChanged();
+    notifyObservers(GetPlayerHand());
+    return hit;
   }
   
   public boolean Stand() { return m_dealer.Stand(); }

@@ -62,7 +62,6 @@ public class Dealer extends Player {
     Card c = m_deck.GetCard();
     c.Show(true);
     a_player.DealCard(c);
-    System.out.println("" + c.GetValue() + " of " + c.GetColor());
   }
   
 }
