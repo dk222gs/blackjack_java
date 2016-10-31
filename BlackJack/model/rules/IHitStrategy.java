@@ -3,5 +3,9 @@ package BlackJack.model.rules;
 import BlackJack.model.Player;
 
 public interface IHitStrategy {
-    boolean DoHit(Player a_dealer);
+  public enum Strategy {
+    BASIC, SOFT
+  }
+
+  boolean DoHit(Player a_dealer);
 }

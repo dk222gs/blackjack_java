@@ -1,5 +1,9 @@
 package BlackJack.model;
 
+import BlackJack.model.rules.IGameRulesStrategy;
+import BlackJack.model.rules.IHitStrategy;
+import BlackJack.model.rules.INewGameStrategy;
+
 import java.util.Observable;
 
 public class Game extends Observable {
@@ -9,8 +13,13 @@ public class Game extends Observable {
 
   public Game()
   {
-    m_dealer = new Dealer(new BlackJack.model.rules.RulesFactory());
-    m_player = new Player();
+    try {
+      m_dealer = new Dealer(new BlackJack.model.rules.RulesFactory(IHitStrategy.Strategy.SOFT,
+          IGameRulesStrategy.GameStrategy.DEALERADVANTAGE, INewGameStrategy.NewGameStrategy.AMERICAN));
+      m_player = new Player();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
   }
     
   public boolean IsGameOver()
