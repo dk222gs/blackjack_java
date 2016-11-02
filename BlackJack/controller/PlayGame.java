@@ -38,10 +38,6 @@ public class PlayGame extends Observable {
 
   private void DisplayCards() {
     a_view.DisplayWelcomeMessage();
-
-    a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-    a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
-
     setChanged();
     notifyObservers(a_game);
   }
