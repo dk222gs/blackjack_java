@@ -1,6 +1,7 @@
 package BlackJack.view;
 
 import BlackJack.model.Card;
+import BlackJack.model.Game;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -93,18 +94,25 @@ public class SimpleView implements IView, Observer
 
   @Override
   public void update(Observable o, Object arg) {
+    try {
+      TimeUnit.SECONDS.sleep(2);
+    } catch (InterruptedException e) {
+      System.out.println("Error when sleeping: " + e.getMessage());
+    }
+    final String player = "Player";
+    final String dealer = "Dealer";
+    Game game = (Game)arg;
+    printHand(game.GetPlayerHand(), player);
+    printHand(game.GetDealerHand(), dealer);
+  }
+
+  private void printHand(Iterable<Card> cards, String user) {
     StringBuilder builder = new StringBuilder();
-    builder.append("New card in hand ||");
-    for(Card c : (Iterable<Card>)arg) {
+    builder.append(user + " hand ||");
+    for(Card c : cards) {
       builder.append(" " + c.GetValue() + "of" + c.GetColor());
     }
     builder.append(" ||");
     System.out.println(builder.toString());
-
-    try {
-      TimeUnit.SECONDS.sleep(4);
-    } catch (InterruptedException e) {
-      System.out.println("Error when sleeping: " + e.getMessage());
-    }
   }
 }

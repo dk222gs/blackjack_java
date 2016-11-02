@@ -4,9 +4,7 @@ import BlackJack.model.rules.IGameRulesStrategy;
 import BlackJack.model.rules.IHitStrategy;
 import BlackJack.model.rules.INewGameStrategy;
 
-import java.util.Observable;
-
-public class Game extends Observable {
+public class Game {
 
   private Dealer m_dealer;
   private Player m_player;
@@ -40,8 +38,6 @@ public class Game extends Observable {
   public boolean Hit()
   {
     boolean hit = m_dealer.Hit(m_player);
-    setChanged();
-    notifyObservers(GetPlayerHand());
     return hit;
   }
   

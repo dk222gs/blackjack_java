@@ -4,7 +4,9 @@ import BlackJack.view.IView;
 import BlackJack.view.IView.Input;
 import BlackJack.model.Game;
 
-public class PlayGame {
+import java.util.Observable;
+
+public class PlayGame extends Observable {
 
   private Game a_game;
   private IView a_view;
@@ -39,6 +41,9 @@ public class PlayGame {
 
     a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
     a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+
+    setChanged();
+    notifyObservers(a_game);
   }
 }
 
