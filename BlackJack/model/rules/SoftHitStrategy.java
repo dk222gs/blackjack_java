@@ -18,7 +18,6 @@ class SoftHitStrategy implements IHitStrategy {
           }
         }
       }
-
       return false;
     }
 }

@@ -58,7 +58,7 @@ public class Dealer extends Player {
     return false;
   }
 
-  private void DealCardFromDeck(Player a_player) {
+  public void DealCardFromDeck(Player a_player) {
     Card c = m_deck.GetCard();
     c.Show(true);
     a_player.DealCard(c);
