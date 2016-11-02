@@ -16,7 +16,7 @@ public class Dealer extends Player {
     m_gameRule = a_rulesFactory.GetGameRules();
 
   }
-  
+
   
   public boolean NewGame(Player a_player) {
     if (m_deck == null || IsGameOver()) {

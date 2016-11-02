@@ -1,51 +1,44 @@
 package BlackJack.controller;
 
 import BlackJack.view.IView;
+import BlackJack.view.IView.Input;
 import BlackJack.model.Game;
 
 public class PlayGame {
 
+  private Game a_game;
+  private IView a_view;
+
   public boolean Play(Game a_game, IView a_view) {
-    a_view.DisplayWelcomeMessage();
-    
-    a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-    a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+    this.a_game = a_game;
+    this.a_view = a_view;
 
-    if (a_game.IsGameOver())
-    {
-        a_view.DisplayGameOver(a_game.IsDealerWinner());
+    DisplayCards();
+
+    if (a_game.IsGameOver()) {
+      a_view.DisplayGameOver(a_game.IsDealerWinner());
     }
 
-    int input = this.GetInput();
-
-    if (input == 'p')
-    {
+    Input input = a_view.GetOption();
+    switch(input) {
+      case NEWGAME:
         a_game.NewGame();
-    }
-    else if (input == 'h')
-    {
-        a_game.Hit();
-    }
-    else if (input == 's')
-    {
+        break;
+      case STAND:
         a_game.Stand();
+        break;
+      case HIT:
+        a_game.Hit();
+        break;
     }
-
-    return input != 'q';
+    return input != Input.QUIT;
   }
 
-  private int GetInput()
-  {
-    try {
-      int c = System.in.read();
-      while (c == '\r' || c =='\n') {
-          c = System.in.read();
-      }
-      return c;
-    } catch (java.io.IOException e) {
-      System.out.println("" + e);
-      return 0;
-    }
+  private void DisplayCards() {
+    a_view.DisplayWelcomeMessage();
+
+    a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+    a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
   }
 }
 
