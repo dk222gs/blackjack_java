@@ -4,6 +4,8 @@ import BlackJack.model.rules.IGameRulesStrategy;
 import BlackJack.model.rules.IHitStrategy;
 import BlackJack.model.rules.INewGameStrategy;
 
+import java.util.Observer;
+
 public class Game {
 
   private Dealer m_dealer;
@@ -13,8 +15,9 @@ public class Game {
   {
     try {
       m_dealer = new Dealer(new BlackJack.model.rules.RulesFactory(IHitStrategy.Strategy.SOFT,
-          IGameRulesStrategy.GameStrategy.DEALERADVANTAGE, INewGameStrategy.NewGameStrategy.AMERICAN));
+          IGameRulesStrategy.GameStrategy.DEALERADVANTAGE, INewGameStrategy.NewGameStrategy.INTERNATIONAL));
       m_player = new Player();
+
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -62,6 +65,10 @@ public class Game {
   {
     return m_player.CalcScore();
   }
+
+  public void addSubscriber(Observer o) {
+    m_dealer.addObserver(o);
+    m_player.addObserver(o);
+  }
     
-  
 }
